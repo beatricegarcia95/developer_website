@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatrice Garcia - Developer, Web Designer & Writer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://kit.fontawesome.com/a36b91425c.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0f0f1a;
+            color: #e2e8f0;
+        }
+        .subtle-glow {
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+        }
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(to right, #1a1a2e, #16213e);
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+        }
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+            padding: 0.5rem 1rem;
+            color: #e2e8f0;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #4fd1c5;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #4fd1c5;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradientAnimation 5s ease infinite;
+        }
+    
+        .mobile-menu-button {
+            transition: all 0.3s;
+        }
+    
+        .mobile-menu-button.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+    
+        .mobile-menu-button.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+    
+        .mobile-menu-button.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    
+        .mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+    
+        .mobile-menu.active {
+            max-height: 300px;
+        }
+    
+        /* New styles for improved navbar */
+        nav {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    
+        nav a.text-3xl {
+            transition: background 0.3s ease;
+        }
+    
+        nav a.text-3xl:hover {
+            background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+    
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+    
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+    
+        #mobile-menu-button {
+            transition: all 0.3s ease;
+        }
+    
+        #mobile-menu-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    
+        #mobile-menu {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    
+        .mobile-nav-link {
+            transition: all 0.3s ease;
+        }
+    
+        .mobile-nav-link:hover {
+            padding-left: 1.5rem;
+            background-color: rgba(79, 209, 197, 0.1);
+        }
+
+        #back-to-top {
+        z-index: 9999;
+        transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    }
+
+    #back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    #back-to-top:not(.show) {
+        transform: translateY(20px);
+    }
+    </style>
+</head>
+
+<body class="overflow-x-hidden">
+    <div id="particles-js" class="fixed inset-0 z-0"></div>
+
+    <nav class="fixed w-full z-50 bg-opacity-90 bg-gray-900 backdrop-filter backdrop-blur-lg shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 hover:from-pink-500 hover:to-purple-500 transition duration-300">BT</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#about" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out transform hover:scale-105">About</a>
+                        <a href="#skills" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out transform hover:scale-105">Skills</a>
+                        <a href="#projects" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out transform hover:scale-105">Projects</a>
+                        <a href="#contact" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out transform hover:scale-105">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white p-2 rounded-md">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-900 bg-opacity-95 backdrop-filter backdrop-blur-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">About</a>
+                <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Skills</a>
+                <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Projects</a>
+                <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition duration-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center justify-center z-10 bg-gradient-to-br from-gray-900 via-purple-900 to-black overflow-hidden">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:40px_40px]"></div>
+        <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-purple-500/10 to-transparent"></div>
+        
+        <div class="text-center relative z-10 px-4">
+            <h1 class="text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 animate-gradient">
+                Beatrice Garcia
+            </h1>
+            <p class="text-3xl mb-8 text-gray-300 font-light">Developer, Writer & Web Designer</p>
+            <div id="typed-wrapper" class="h-20"> <!-- Fixed height container for typed text -->
+                <span id="typed" class="text-4xl font-bold text-white"></span>
+            </div>
+            <div class="mt-12">
+                <a href="#contact" class="inline-block px-8 py-4 bg-purple-600 text-white font-semibold rounded-full transition duration-300 ease-in-out hover:bg-purple-700 hover:shadow-lg transform hover:-translate-y-1">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <a href="#about" class="text-purple-400 opacity-75 hover:opacity-100 transition duration-300">
+                <svg class="w-10 h-10 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <section id="about" class="py-24 bg-gradient-to-br from-gray-900 to-black">
+            <div class="container mx-auto px-6">
+                <h2 class="text-6xl font-extrabold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-[#D36AD1] to-[#EB4A9C] animate-pulse">About Me</h2>
+                <div class="bg-[#2F1A50] bg-opacity-80 rounded-3xl p-8 backdrop-blur-lg border border-[#D36AD1] shadow-lg shadow-[#D36AD1]/50">
+                    <div class="flex flex-col lg:flex-row items-center lg:items-start space-y-12 lg:space-y-0 lg:space-x-12">
+                        <div class="lg:w-1/3 relative group">
+                            <img src="bea1.jpg" alt="Beatrice Garcia" class="rounded-2xl w-full max-w-sm mx-auto shadow-2xl transform transition duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#EB4A9C] to-transparent opacity-0 group-hover:opacity-75 transition duration-500 rounded-2xl"></div>
+                        </div>
+                        <div class="lg:w-2/3">
+                            <h3 class="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#D36AD1] to-[#EB4A9C]">Hello, I'm Beatrice Garcia</h3>
+                            <p class="text-xl mb-8 leading-relaxed text-gray-100">
+                                I'm a passionate developer and web designer based in Germany, with over 5 years of experience in creating beautiful and functional web solutions. My journey in the tech world has been driven by a constant desire to learn and innovate.
+                            </p>
+                            <p class="text-xl mb-10 leading-relaxed text-gray-100">
+                                From crafting pixel-perfect designs to writing clean, efficient code, I take pride in delivering high-quality work that exceeds expectations. My expertise spans across various technologies, allowing me to tackle diverse projects with confidence and creativity.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg text-gray-100">
+                                <div class="space-y-4">
+                                    <p class="flex items-center"><span class="text-[#EB4A9C] font-semibold mr-2 text-2xl"><i class="fas fa-birthday-cake"></i></span> Born: January, 1995</p>
+                                    <p class="flex items-center"><span class="text-[#EB4A9C] font-semibold mr-2 text-2xl"><i class="fas fa-map-marker-alt"></i></span> Location: Germany</p>
+                                    <p class="flex items-center"><span class="text-[#EB4A9C] font-semibold mr-2 text-2xl"><i class="fas fa-flag"></i></span> Nationality: Lithuanian</p>
+                                </div>
+                                <div class="space-y-4">
+                                    <p class="flex items-center"><span class="text-[#EB4A9C] font-semibold mr-2 text-2xl"><i class="fas fa-briefcase"></i></span> Experience: 5+ years</p>
+                                    <p class="flex items-center"><span class="text-[#EB4A9C] font-semibold mr-2 text-2xl"><i class="fas fa-laptop-code"></i></span> Freelance: Available</p>
+                                    <p class="flex items-center"><span class="text-[#EB4A9C] font-semibold mr-2 text-2xl"><i class="fas fa-heart"></i></span> Hobby: Writing / Video Editing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center subtle-glow">Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 gradient-border">
+                        <h3 class="text-xl font-semibold mb-4 text-cyan-400">Python</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                            <div class="bg-cyan-400 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p>Expert-level proficiency in Python development</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 gradient-border">
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400">CSS</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                            <div class="bg-pink-400 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p>Advanced CSS styling and animations</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 gradient-border">
+                        <h3 class="text-xl font-semibold mb-4 text-yellow-400">HTML</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                            <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p>Semantic HTML5 and accessibility expert</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 gradient-border">
+                        <h3 class="text-xl font-semibold mb-4 text-green-400">JavaScript</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                            <div class="bg-green-400 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p>Modern JavaScript and framework experience</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 gradient-border">
+                        <h3 class="text-xl font-semibold mb-4 text-purple-400">WordPress</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                            <div class="bg-purple-400 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p>WordPress design and management specialist</p>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 gradient-border">
+                        <h3 class="text-xl font-semibold mb-4 text-indigo-400">VPS Management</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                            <div class="bg-indigo-400 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p>Proficient in Virtual Private Server management</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-12 text-center subtle-glow">Open Source Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden gradient-border">
+                        <img src="calculator.jpg" alt="Project 1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-cyan-400">Advanced Calculator(Python)</h3>
+                            <p class="text-gray-300 mb-4">This is an advanced calculator application built with PyQt5. It offers a wide range of mathematical operations, including basic arithmetic, scientific functions, and memory operations.</p>
+                            <a href="https://github.com/quiterude0/advanced-calculator" target="_blank" class="text-cyan-400 hover:text-cyan-300">View Project</a>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden gradient-border">
+                        <img src="currency_converter.jpg" alt="Project 2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-pink-400">Currency Converter(Python)</h3>
+                            <p class="text-gray-300 mb-4">A sleek and modern currency converter application built with Python and PyQt6. This app fetches real-time exchange rates and provides an intuitive interface for currency conversion.</p>
+                            <a href="https://github.com/quiterude0/currency-converter" target="_blank" class="text-pink-400 hover:text-pink-300">View Project</a>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden gradient-border">
+                        <img src="password_manager.jpg" alt="Project 3" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-yellow-400">Advanced Password Generator(Python)</h3>
+                            <p class="text-gray-300 mb-4">This is an advanced password generator application built with PyQt5. It provides a user-friendly interface for generating strong, random passwords with customizable options.</p>
+                            <a href="https://github.com/quiterude0/advanced-password-generator" target="_blank" class="text-yellow-400 hover:text-yellow-300">View Project</a>
+                        </div>
+                    </div>
+                  
+                       <div class="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden gradient-border">
+                        <img src="devdr.jpg" alt="Project 3" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-yellow-400">Under Development Landing Page(HTML/CSS/JS)</h3>
+                            <p class="text-gray-300 mb-4">This is a landing page designed in pure HTML, CSS and JS for an 'Under Development' website.</p>
+                            <a href="https://github.com/beatricegarcia95/under-development-landing" target="_blank" class="text-yellow-400 hover:text-yellow-300">View Project</a>
+                        </div>
+                    </div>
+                  
+                  
+                     <div class="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden gradient-border">
+                       <img src="zodiac444.jpg" alt="Project 2" class="w-full h-48 object-cover">
+                       <div class="p-6">
+                           <h3 class="font-bold text-xl mb-2 text-pink-400">Chinese Zodiac Calculator(HTML, CSS, JS)</h3>
+                           <p class="text-gray-300 mb-4">A chinese zodiac calculator. Find out your chinese zodiac with 100% accuracy! :).</p>
+                           <a href="https://github.com/beatricegarcia95/chinese-zodiac-calculator" target="_blank" class="text-pink-400 hover:text-pink-300">View Project</a>
+                       </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="contact" class="py-32 bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:40px_40px]"></div>
+        <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-purple-500/10 to-transparent"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-6xl font-black mb-20 text-center">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+                    Let's Connect
+                </span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <h3 class="text-3xl font-bold text-white">Reach Out Anytime</h3>
+                    <p class="text-gray-300 text-lg">I'm always open to new opportunities, collaborations, or just a friendly chat about technology, writing or even advice.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://x.com/SamaraMidnight" class="text-purple-400 hover:text-purple-300 transition-colors duration-300" target="_blank">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/beatricegarcia95" class="text-purple-400 hover:text-purple-300 transition-colors duration-300" target="_blank">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition-colors duration-300">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-lg shadow-2xl">
+                    <div class="relative w-24 h-24 mx-auto mb-6 overflow-hidden rounded-full ring-4 ring-purple-500 ring-opacity-50">
+                        <img src="tglogo.png" alt="Telegram Logo" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Telegram</h4>
+                    <p class="text-gray-300 mb-6">For quick responses and real-time chat, reach out on Telegram.</p>
+                    <a href="https://t.me/sammymoon98" target="_blank" class="group">
+                        <span class="flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300 ease-in-out">
+                            Connect on Telegram
+                            <svg class="ml-2 -mr-1 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ease-in-out" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+    </section>
+
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2 subtle-glow">Beatrice Garcia</h3>
+                    <p class="text-gray-400">Developer & Web Designer</p>
+                </div>
+                <!-- GitHub logo container -->
+                <div class="flex justify-end">
+                    <i class="fab fa-github text-white text-4xl"></i> <!-- Adjusted the size with text-4xl -->
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>&copy; 2024 Design by Beatrice Garcia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-purple-600 text-white p-2 rounded-full shadow-lg transition-all duration-300 opacity-0 invisible hover:bg-purple-700 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <script>
+        // Particles.js initialization
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('particles.js loaded');
+        });
+
+        // Typed.js initialization
+        var typed = new Typed('#typed', {
+            strings: [
+                'WordPress Wizard',
+                'CSS Sorcerer',
+                'HTML Architect',
+                'JavaScript Enjoyer',
+                'Python Mastermind',
+                'VPS Manager',
+                'Responsive Design Lover',
+                'SEO Optimization Expert',
+                'UX/UI Alchemist',
+                'Performance Tuning Specialist'
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|',
+            autoInsertCss: true,
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.innerHTML = `
+            <div class="bar w-6 h-0.5 bg-gray-400 my-1.5 transition-all"></div>
+            <div class="bar w-6 h-0.5 bg-gray-400 my-1.5 transition-all"></div>
+            <div class="bar w-6 h-0.5 bg-gray-400 my-1.5 transition-all"></div>
+        `;
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenuButton.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuButton.classList.remove('active');
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for fade-in animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Back to top functionality
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+    
+</body>
+</html>
